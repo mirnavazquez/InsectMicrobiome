@@ -1,0 +1,20 @@
+Package: InsectMicrobiome
+Type: Package
+Title: Analize amplicon sequences from insects.
+Version: 0.1.0
+Author: Mirna Vázquez Rosas Landa
+Maintainer: The package maintainer <mirnavrl@gmail.com>
+Description: This package imports data from QIME and PICRUST and performe alpha diversity plots, core composition analysis and ordinations analysis.
+Encoding: UTF-8
+LazyData: true
+Imports:
+    BiocManager,
+    microbiome,
+    biom,
+    phyloseq,
+    ggplot2,
+    RColorBrewer,
+    dplyr,
+    vegan,
+    viridis
+License: GPL-3
