@@ -16,7 +16,8 @@ bar_plot_for_tax_level<-function(objPhyloseq, rangoTaxonomico, orden){
   ps.meltrangoTaxonomico <- psmelt(psdat.rangoTaxonomico)
   ps.meltrangoTaxonomico$SampleType <- factor(ps.meltrangoTaxonomico$SampleType, 
                                               levels= orden)
-  p<-ggplot2::ggplot(ps.meltrangoTaxonomico, ggplot2::aes(x = SampleType, y = Abundance, fill = rangoTaxonomico)) +
+  p<-ggplot2::ggplot(ps.meltrangoTaxonomico, ggplot2::aes_string(x = ps.meltrangoTaxonomico$SampleType, 
+             y = ps.meltrangoTaxonomico$Abundance, fill = rangoTaxonomico)) +
     ggplot2::geom_bar(stat = "identity", position = "fill") + ggplot2::facet_wrap("Host") +
     ggplot2::scale_fill_manual(values = colors_rangoTaxonomico)
   print(p)
