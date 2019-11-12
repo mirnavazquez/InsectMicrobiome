@@ -1,20 +1,14 @@
 clustering_kos<-function(databiomKO, estadio){
   y <- read_biom("ko_predictions.biom")
-  y
-
   otumaty = as(biom_data(y), "matrix")
   OTUy = otu_table(otumaty, taxa_are_rows=TRUE)
   taxmaty = as.matrix(observation_metadata(y), rownames.force=TRUE)
   TAXy = tax_table(taxmaty)
-  TAXy
   path_1 = phyloseq(OTUy, TAXy, map)
-  path_1
-
   wh0Ko = genefilter_sample(path_1, filterfun_sample(function(x) x > 5), A=0.5*nsamples(path_1))
   GP1Ko = prune_taxa(wh0Ko, path_1)
   GP1Ko = transform_sample_counts(GP1Ko, function(x) 1E6 * x/sum(x))
   kO1 <- subset_samples(GP1Ko, SampleType == "Larvae")
-
   pdf("KOclustering.pdf", width=10, height=10)
   orduKo = ordinate(kO1, "PCoA", "bray")
   pKo = plot_ordination(kO1, orduKo, color="Host")

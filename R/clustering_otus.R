@@ -1,10 +1,6 @@
-clustering_otus<-function(mapping, biom){
-  map=import_qiime_sample_data("mapping")
-  otus=import_biom("biom", parseFunction=parse_taxonomy_greengenes)
-  mergedata=merge_phyloseq(otus,map)
-
-  wh0otu = genefilter_sample(mergedata, filterfun_sample(function(x) x > 5), A=0.5*nsamples(mergedata))
-  GP1otu = prune_taxa(wh0otu, mergedata)
+clustering_otus<-function(objtPhyloseq){
+  wh0otu = genefilter_sample(objtPhyloseq, filterfun_sample(function(x) x > 5), A=0.5*nsamples(objtPhyloseq))
+  GP1otu = prune_taxa(wh0otu, objtPhyloseq)
   GP1otu = transform_sample_counts(GP1otu, function(x) 1E6 * x/sum(x))
   pseq.1otu <- subset_samples(GP1otu, SampleType == "Larvae")
 
