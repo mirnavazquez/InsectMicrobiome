@@ -16,6 +16,7 @@ Imports:
     RColorBrewer,
     dplyr,
     vegan,
-    viridis
+    viridis,
+    Hmisc
 License: GPL-3
 RoxygenNote: 6.1.1
