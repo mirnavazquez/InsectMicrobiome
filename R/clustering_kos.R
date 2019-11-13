@@ -16,5 +16,4 @@ clustering_kos<-function(databiomKO, estadio){
   pKo = pKo + scale_colour_brewer(type="qual", palette="Set1")
   pKo + ggtitle("MDS/PCoA on Bray distance, KOs")
   dev.off()
-
 }

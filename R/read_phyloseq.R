@@ -4,3 +4,4 @@ read_to_phyloseq<- function(mapping, biom){
   mergedata=phyloseq::merge_phyloseq(otus,map)
   message("Creating a phyloseq object")
 }
+
