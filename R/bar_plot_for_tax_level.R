@@ -13,7 +13,7 @@ bar_plot_for_tax_level<-function(objPhyloseq, rangoTaxonomico, orden){
     pdf("Figure.pdf", width=10, height=10)
   }
   psdat.rangoTaxonomico <- phyloseq::tax_glom(objPhyloseq, taxrank = rangoTaxonomico)
-  ps.meltrangoTaxonomico <- psmelt(psdat.rangoTaxonomico)
+  ps.meltrangoTaxonomico <- phyloseq::psmelt(psdat.rangoTaxonomico)
   ps.meltrangoTaxonomico$SampleType <- factor(ps.meltrangoTaxonomico$SampleType,
                                               levels= orden)
   p<-ggplot2::ggplot(ps.meltrangoTaxonomico, ggplot2::aes_string(x = ps.meltrangoTaxonomico$SampleType,
