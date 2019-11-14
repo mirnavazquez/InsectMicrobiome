@@ -3,8 +3,8 @@ core<-function(objtPhyloseq, x){
   if(as.character(x) == TRUE ) {
   pseq.1 <- phyloseq::subset_samples(objtPhyloseq, SampleType == x )
   pseq.rel <- microbiome::transform(pseq.1, "compositional")
-  pseq.rel <- microbiome::transform(objtPhyloseq, "compositional")
-  core.taxa.standard <- microbiome::core_members(pseq.rel, detection = 0, prevalence = .5)
+  #pseq.rel <- microbiome::transform(objtPhyloseq, "compositional")
+  #core.taxa.standard <- microbiome::core_members(pseq.rel, detection = 0, prevalence = .5)
   pseq.core <- microbiome::core(pseq.rel, detection = 0, prevalence = .5)
   core.taxa <- microbiome::taxa(pseq.core)
   tax.mat <- phyloseq::tax_table(pseq.core)
@@ -35,7 +35,7 @@ core<-function(objtPhyloseq, x){
   plot(healthycore + ggplot2::theme(axis.text.y = ggplot2::element_text(face="italic")) + viridis::scale_fill_viridis())
   } else {
   pseq.rel <- microbiome::transform(objtPhyloseq, "compositional")
-  core.taxa.standard <- microbiome::core_members(pseq.rel, detection = 0, prevalence = .5)
+  #core.taxa.standard <- microbiome::core_members(pseq.rel, detection = 0, prevalence = .5)
   pseq.core <- microbiome::core(pseq.rel, detection = 0, prevalence = .5)
   core.taxa <- microbiome::taxa(pseq.core)
   tax.mat <- phyloseq::tax_table(pseq.core)
