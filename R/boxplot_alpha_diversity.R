@@ -1,3 +1,10 @@
+#' @title Create alpha diversity plots
+#' @description This fuction takes a phyloseq object and create a pdf file with plots information.
+#' @param objPhyloseq a phyloseq object.
+#' @details This function is part of a package used for the analysis of microbial communities.
+#' @examples
+#' boxplot_alpha_diversity(mergedata, o, "SampleType", "SampleType", "Simpson", "Host")
+#' @export
 boxplot_alpha_diversity<-function(objPhyloseq, orden, xFactor, colFactor, divMeasure, wrap){
   objPhyloseq@sam_data$SampleType <- factor(objPhyloseq@sam_data$SampleType, levels=orden)
   lev<-levels(objPhyloseq@sam_data$SampleType)
