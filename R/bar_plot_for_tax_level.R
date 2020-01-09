@@ -2,10 +2,10 @@
 #' @description This fuction takes a phyloseq object and create a pdf file with plots information.
 #' @param objPhyloseq a phyloseq object.
 #' @param rangoTaxonomico a valid taxonomic rank such as "Genus", "Family", "Phylum" and "Class".
-#' @param orden the order in which the samples are going to be presented.
+#' @param orden a vector with the order in which the samples are going to be presented.
 #' @details This function is part of a package used for the analysis of microbial communities.
 #' @examples
-#' bar_plot_for_tax_level(mergedata, "Genus", commander)
+#' bar_plot_for_tax_level(mergedata, "Genus", order)
 #' @export
 bar_plot_for_tax_level<-function(objPhyloseq, rangoTaxonomico, orden){
   tax=as.data.frame(objPhyloseq@tax_table@.Data)

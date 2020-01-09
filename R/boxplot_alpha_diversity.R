@@ -1,6 +1,11 @@
 #' @title Create alpha diversity plots
 #' @description This fuction takes a phyloseq object and create a pdf file with plots information.
-#' @param objPhyloseq a phyloseq object.
+#' @param objPhyloseq A phyloseq object.
+#' @param order A vector with the order in which the samples are going to be presented.
+#' @param xFactor Indicate from metadata file which factor will be used as X level.
+#' @param colFactor Indicate from metadata file wich factor will determine the color.
+#' @param divMeasure Indicate which alpha diversity measure will be used.
+#' @param wrap Indicate from metadata file wich factor will determine the wrap
 #' @details This function is part of a package used for the analysis of microbial communities.
 #' @examples
 #' boxplot_alpha_diversity(mergedata, o, "SampleType", "SampleType", "Simpson", "Host")

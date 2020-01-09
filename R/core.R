@@ -1,3 +1,11 @@
+#' @title Create a core plot
+#' @description This fuction takes a phyloseq object and create a pdf file with plots information.
+#' @param objPhyloseq A phyloseq object.
+#' @param x The subsseting object.
+#' @details This function is part of a package used for the analysis of microbial communities.
+#' @examples
+#' core(mergedata, "Females")
+#' @export
 core<-function(objtPhyloseq, x=NULL){
   if(is.null(x)) {
     pseq.1 <- phyloseq::subset_samples(objtPhyloseq)
