@@ -1,7 +1,7 @@
 #' @title Create a core plot
 #' @description This fuction takes a phyloseq object and create a pdf file with plots information.
 #' @param objPhyloseq A phyloseq object.
-#' @param niveau The subsseting object. Valid levels are "Females", "Males", "Larvae", "Pulp", "all", "adults" and "all-stages"
+#' @param niveau The subsseting object. Valid levels are for sample type "Females", "Males", "Larvae", "Pulp", "adults" and "all-stages" or by host "Capsicum", "Prunus", "Citrus", "Casimiroa", "Sargentia" and "Mangifera". As well you can choose "all".
 #' @details This function is part of a package used for the analysis of microbial communities.
 #' @examples
 #' core(mergedata, "Females")
@@ -22,6 +22,18 @@ core<-function(objtPhyloseq, niveau){
     pseq.1 <- phyloseq::subset_samples(objtPhyloseq, SampleType == "Females" | SampleType == "Males" )
   } else if (niveau == "all-stages") {
     pseq.1 <- phyloseq::subset_samples(objtPhyloseq, SampleType == "Females" | SampleType == "Males" | SampleType == "Larvae")
+  } else if (niveau == "Capsicum") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, Host == "Capsicum pubescens" | SampleType == "Males" | SampleType == "Larvae" |SampleType == "Females" )
+  } else if (niveau == "Prunus") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, Host == "Prunus persica" | SampleType == "Males" | SampleType == "Larvae" |SampleType == "Females" )
+  } else if (niveau == "Citrus") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, Host == "Citrus aurantium" | SampleType == "Males" | SampleType == "Larvae" |SampleType == "Females" )
+  } else if (niveau == "Casimiroa") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, Host == "Casimiroa edulis" | SampleType == "Males" | SampleType == "Larvae" |SampleType == "Females" )
+  } else if (niveau == "Sargentia") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, Host == "Sargentia greggii" | SampleType == "Males" | SampleType == "Larvae" |SampleType == "Females" )
+  } else if (niveau == "Mangifera") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, Host == "Mangifera indica" | SampleType == "Males" | SampleType == "Larvae" |SampleType == "Females" )
   }
 
   pseq.rel <- microbiome::transform(pseq.1, "compositional")
