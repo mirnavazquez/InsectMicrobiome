@@ -1,19 +1,29 @@
 #' @title Create a core plot
 #' @description This fuction takes a phyloseq object and create a pdf file with plots information.
 #' @param objPhyloseq A phyloseq object.
-#' @param x The subsseting object.
+#' @param niveau The subsseting object. Valid levels are "Females", "Males", "Larvae", "Pulp", "all", "adults" and "all-stages"
 #' @details This function is part of a package used for the analysis of microbial communities.
 #' @examples
 #' core(mergedata, "Females")
 #' @export
-core<-function(objtPhyloseq, x=NULL){
-  if(is.null(x)) {
+core<-function(objtPhyloseq, niveau){
+
+  if(niveau == "Females"){
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, SampleType == "Females" )
+  } else if (niveau == "Males") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, SampleType == "Males" )
+  } else if (niveau == "Larvae") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, SampleType == "Larvae" )
+  } else if (niveau == "Pulp") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, SampleType == "Pulp" )
+  } else if (niveau == "all") {
     pseq.1 <- phyloseq::subset_samples(objtPhyloseq)
-    pseq.1
-  } else {
-    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, SampleType == x )
-    pseq.1
+  } else if (niveau == "adults") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, SampleType == "Females" | SampleType == "Males" )
+  } else if (niveau == "all-stages") {
+    pseq.1 <- phyloseq::subset_samples(objtPhyloseq, SampleType == "Females" | SampleType == "Males" | SampleType == "Larvae")
   }
+
   pseq.rel <- microbiome::transform(pseq.1, "compositional")
   pseq.core <- microbiome::core(pseq.rel, detection = 0, prevalence = .5)
   core.taxa <- microbiome::taxa(pseq.core)
@@ -41,7 +51,8 @@ core<-function(objtPhyloseq, x=NULL){
   knitr::kable(head(df))
   df2<-df[order(-df$Prevalence, -df$DetectionThreshold), ]
   healthycore$data <- df2
-  pdf(paste0("core",x,".pdf"), width=10, height=10)
+  pdf(paste0("core",niveau,".pdf"), width=10, height=10)
   plot(healthycore + ggplot2::theme(axis.text.y = ggplot2::element_text(face="italic")) + viridis::scale_fill_viridis())
   dev.off()
 }
+
